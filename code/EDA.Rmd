@@ -1,0 +1,199 @@
+---
+title: "R Workshop: Exploratory Data Analysis"
+author: "Sara Eftekhar Azam"
+date: "2024-05"
+output: html_document
+---
+
+## Introduction
+In this part of the workshop, we are going to use R language to analyze, filter, group, and plot data.
+
+We are going to use tidyverse package.
+
+When you click the **Knit** button a HTML document will be generated.
+
+
+## Loading packages
+First, we have to install packages (if not already installed).
+The packages we are going to use are tidyverse, ggplot2, dplyr, and magrittr.
+
+tidyverse: This is a collection of R packages designed for data science. It includes some datasets too.
+
+ggplot2: This package is used for creating elegant and complex data visualizations.
+
+dplyr: This package provides a set of functions for data manipulation tasks such as filtering, grouping, summarizing, and mutating data frames.
+
+magrittr: This package provides the pipe operator %>%, which allows you to chain together multiple operations.
+
+To install a package, use install.packages("name of package") in the console or terminal below. You only have to do this once.
+
+install.packages("tidyverse")
+install.packages("ggplot2")
+install.packages("dplyr")
+install.packages("magrittr")
+
+To run a cell, click on the run button. (echo = FALSE) prevents showing the output.
+
+After installing the packages, we should include or import them to use them later:
+```{r import packages, include=FALSE, echo = FALSE}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(magrittr)
+```
+
+## Loading data and initial exploring dataset
+You can load data from file using:
+data <- read.csv("data.csv")
+
+However, the packages we are using have many good datasets inside them. We can use them too.
+To see their available datasets, run the following chunk:
+```{r list datasets}
+data(package = "ggplot2")
+```
+I am going to use mpg dataset, but feel free to change the dataset and use some other dataset. 
+
+Let's load our dataset:
+```{r load data}
+data(mpg)
+```
+
+```{r explore data: head}
+# View the first few rows of the dataset
+head(mpg)
+
+```
+Here is a short description of different columns in this dataset:
+
+manufacturer: This column represents the manufacturer or company that produced the car. For example, "audi", "chevrolet", "ford", etc.
+model: This column specifies the model name or identifier of the car. It usually refers to the specific make and model of the vehicle, such as "a4", "corvette", "mustang", etc.
+displ: The "displ" column stands for engine displacement, which refers to the volume of space in the engine cylinders where combustion occurs. It's typically measured in liters (L) or cubic inches (cu. in.). Engine displacement is an indicator of engine size and power.
+year: This column indicates the year the car was manufactured.
+cyl: The "cyl" column represents the number of cylinders in the engine. Cars can have different numbers of cylinders, such as 4-cylinder, 6-cylinder, or 8-cylinder engines.
+trans: This column specifies the type of transmission in the car, such as automatic or manual. It may also include additional details about the transmission system.
+drv: The "drv" column represents the type of drive train, which refers to how power is transmitted from the engine to the wheels. Common drive train types include front-wheel drive (fwd), rear-wheel drive (rwd), and four-wheel drive (4wd).
+cty: The "cty" column stands for city mileage, which represents the estimated fuel efficiency of the car in miles per gallon (mpg) when driving in city conditions.
+hwy: The "hwy" column represents highway mileage, which indicates the estimated fuel efficiency of the car in miles per gallon (mpg) when driving on the highway.
+fl: This column indicates the fuel type used by the car, such as regular gasoline (r), premium gasoline (p), or diesel (d).
+class: The "class" column specifies the class or category of the car, such as compact, midsize, or SUV (sport utility vehicle).
+
+
+```{r explore data: str}
+# Display the structure of the dataset
+str(mpg)
+
+```
+
+
+```{r explore data: summary}
+# Summary statistics for numerical variables
+summary(mpg)
+
+
+```
+
+We can get unique values of a columns.
+```{r unique values}
+# Get unique manufacturers using unique() function
+#unique_manufacturers <- unique(mpg$manufacturer)
+unique_manufacturers <- unique(mpg[["manufacturer"]])
+
+# Print unique manufacturers
+print(unique_manufacturers)
+
+```
+
+
+## Group, filter, and plot data
+Grouping in R is like using GROUP BY in SQL.
+Filtering in R is like adding conditions with WHERE in SQL.
+Plotting is rather simple and intuitive. 
+
+Let's visualize the city and highway mileage (mile per gallon of fuel).
+The ggplot library acts in an additive way. You can add more and amore to the figure. 
+Task: plot city vs highway mileage. Show engine size and vehicle class as size and color. 
+```{r visualization}
+ggplot(mpg, aes(x = cty, y = hwy, color = class, size = displ)) +
+  geom_point(alpha = 0.25) +  # Add points for each data point with transparency
+  scale_color_discrete(name = "Vehicle Class") +  # Custom color legend title
+  scale_size_continuous(name = "Engine Displacement (L)") +  # Custom size legend title
+  labs(x = "City Mileage (mpg)", y = "Highway Mileage (mpg)") +  # Labels for x and y axes
+  ggtitle("Scatter Plot of City Mileage vs. Highway Mileage")  # Title for the plot
+```
+Facets can show multiple figures for different values of a categorical variable:
+The following figure shows engine size vs city mileage for different classes (car types).
+```{r facet plot}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class)
+```
+
+We are going to learn how to do these by doing some example tasks.
+
+### Task 1:
+Compare the average city and highway mileage for different car manufacturers.
+Only consider car that were made after 1999.
+Plot bar chart to show the results. 
+
+First, we see how this can be done without pipe %>% operator.
+
+```{r task 1, without pipe}
+t1_filtered_mpg <- filter(mpg, year > 1999)
+t1_grouped_mpg <- group_by(t1_filtered_mpg, manufacturer)
+t1_summarized_mpg <- summarise(t1_grouped_mpg, mean_city_mileage = mean(cty), mean_highway_mileage = mean(hwy))
+
+ggplot(t1_summarized_mpg, aes(x = reorder(manufacturer, mean_city_mileage), y = mean_city_mileage)) +
+  geom_bar(stat = "identity", fill = "skyblue", aes(fill = manufacturer)) +
+  labs(x = "Manufacturer", y = "Mean City Mileage") +
+  ggtitle("Mean City Mileage by Manufacturer") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  coord_flip()
+
+ggplot(t1_summarized_mpg, aes(x = reorder(manufacturer, mean_highway_mileage), y = mean_highway_mileage)) +
+  geom_bar(stat = "identity", fill = "skyblue", aes(fill = manufacturer)) +
+  labs(x = "Manufacturer", y = "Mean Highway Mileage") +
+  ggtitle("Mean Highway Mileage by Manufacturer") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  coord_flip()
+
+```
+Now, let's do this with pip %>% operator. This is much shorter:
+
+```{r task 1, with pipe}
+t1_summarized_mpg_with_pipe <- mpg %>% 
+  filter(year > 1999) %>%
+  group_by(manufacturer) %>%
+  summarise(mean_city_mileage = mean(cty), mean_highway_mileage = mean(hwy))
+
+ggplot(t1_summarized_mpg_with_pipe, aes(x = reorder(manufacturer, mean_city_mileage), y = mean_city_mileage)) +
+  geom_bar(stat = "identity", fill = "skyblue", aes(fill = manufacturer)) +
+  labs(x = "Manufacturer", y = "Mean City Mileage") +
+  ggtitle("Mean City Mileage by Manufacturer") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  coord_flip()
+
+ggplot(t1_summarized_mpg_with_pipe, aes(x = reorder(manufacturer, mean_highway_mileage), y = mean_highway_mileage)) +
+  geom_bar(stat = "identity", fill = "skyblue", aes(fill = manufacturer)) +
+  labs(x = "Manufacturer", y = "Mean Highway Mileage") +
+  ggtitle("Mean Highway Mileage by Manufacturer") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  coord_flip()
+
+```
+
+### Task 2:
+Plot city and highway mileage (mile per gallon) in a scatter plot for cars made between 1995 and 2005. Add a smooth line.
+
+```{r task 2}
+task2_filtered_mpg = mpg %>% filter(year >= 1995 & year <= 2005)
+ggplot(task2_filtered_mpg, aes(x = cty, y = hwy)) +
+  geom_point(alpha = 1) +  # Add points
+  geom_smooth(method = "lm", se = FALSE) +  # Add linear regression line with or without confidence interval
+  labs(x = "City Mileage", y = "Highway Mileage") +
+  ggtitle("City vs Highway Mileage")
+
+```
+
+### Task 3:
+Use your imagination and come up with some way to filter, group, summarize, and plot data that is interesting. 
+
