@@ -387,8 +387,8 @@ showing the output.</p>
 <p>After installing the packages, we should include or import them to
 use them later:</p>
 </div>
-<div id="loading-and-initial-exploring-dataset" class="section level2">
-<h2>Loading and initial exploring dataset</h2>
+<div id="loading-data-and-initial-exploring-dataset" class="section level2">
+<h2>Loading data and initial exploring dataset</h2>
 <p>You can load data from file using: data &lt;-
 read.csv(“data.csv”)</p>
 <p>However, the packages we are using have many good datasets inside
@@ -474,6 +474,7 @@ summary(mpg)</code></pre>
 ##  Mean   :23.44                                        
 ##  3rd Qu.:27.00                                        
 ##  Max.   :44.00</code></pre>
+<p>We can get unique values of a columns.</p>
 <pre class="r"><code># Get unique manufacturers using unique() function
 #unique_manufacturers &lt;- unique(mpg$manufacturer)
 unique_manufacturers &lt;- unique(mpg[[&quot;manufacturer&quot;]])
