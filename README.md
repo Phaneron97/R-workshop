@@ -13,9 +13,8 @@ To use R locally, you'll need only program called "R-base" and an editor or IDE.
 
 ### Windows
 1. Download R-4.x.x from this link: https://cran.rstudio.com/bin/windows/base
-2. Run the .EXE
-3. If you don't know what you're doing, leave all options as default
-4. Reboot if necessary
+2. Run the .EXE (if you don't know what you're doing, leave all options as default)
+3. Reboot if necessary
 
 ### Web based
 Use Google Colab
