@@ -25,9 +25,10 @@ Use Google Colab
 
 ## IDE configuration
 
-### Vscode (recommended)
+### vsCode (recommended)
 * Add R extension for VS Code
 * Add R Debugger for VS Code
+* Reboot vsCode
 
 ### RStudio
 1. Download RStudio Desktop IDE from link: https://posit.co/download/rstudio-desktop/
