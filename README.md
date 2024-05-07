@@ -1,9 +1,9 @@
 # README
 Welcome to the repo for the Workshop R for Inholland Informatics 2024
 
-## Installation on OS
 To use R locally, you'll need only program called "R-base" and an editor or IDE.
 
+## Installation on OS
 ### Linux
 *tested on Linux Mint*
 1. `sudo apt update -y`
@@ -25,9 +25,9 @@ Use Google Colab
 ## IDE configuration
 
 ### vsCode (recommended)
-* Add R extension for VS Code
-* Add R Debugger for VS Code
-* Reboot vsCode
+1. Add R extension for VS Code
+2. Add R Debugger for VS Code
+3. Reboot vsCode
 
 ### RStudio
 1. Download RStudio Desktop IDE from link: https://posit.co/download/rstudio-desktop/
