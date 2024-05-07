@@ -5,7 +5,7 @@ Welcome to the repo for the Workshop R for Inholland Informatics 2024
 To use R locally, you'll need only program called "R-base" and an editor or IDE.
 
 ### Linux
-*tested on Linux mint*
+*tested on Linux Mint*
 1. `sudo apt update -y`
 2. `sudo apt install r-base -y`
 3. `R --version` Check your R install
