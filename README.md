@@ -1,28 +1,20 @@
-# R-workshop
-Workshop R for Inholland Informatica 2024
+# README
+Welcome to the repo for the Workshop R for Inholland Informatics 2024
 
-## Install instructions
-To use R locally, you need R base and an editor or IDE.
+To use R locally, you'll need only program called "R-base" and an editor or IDE.
 
-### Linux based
-*tested on Linux mint*
-* `sudo apt update -y`
-* `sudo apt install r-base -y`
-* `R --version` Check your R install
+## Installation on OS
+### Linux
+*tested on Linux Mint*
+1. `sudo apt update -y`
+2. `sudo apt install r-base -y`
+3. `R --version` Check your R install
+4. Reboot if necessary
 
-### Windows installation
-1. Download R from this link: https://cran.rstudio.com/bin/windows/base/R-4.3.3-win.exe
-2. Run the .EXE to install
-
-You have multiple options to run a R file.
-Option 1: VS code:
-- Add R extension for VS Code
-- Add R Debugger for VS Code
-
-Option 2: RStudio IDE
-- Download RStudio Desktop IDE from link: https://posit.co/download/rstudio-desktop/
-- Install it
-
+### Windows
+1. Download R-4.x.x from this link: https://cran.rstudio.com/bin/windows/base
+2. Run the .EXE (if you don't know what you're doing, leave all options as default)
+3. Reboot if necessary
 
 ### Web based
 Use Google Colab
@@ -30,4 +22,13 @@ Use Google Colab
 2. Create a new notebook.
 3. Change Runtime -> Change runtime type -> Runtime type to R.
 
-## Test
+## IDE configuration
+
+### vsCode (recommended)
+1. Add R extension for VS Code
+2. Add R Debugger for VS Code
+3. Reboot vsCode
+
+### RStudio
+1. Download RStudio Desktop IDE from link: https://posit.co/download/rstudio-desktop/
+2. Install it
