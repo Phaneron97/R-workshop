@@ -32,3 +32,12 @@ Use Google Colab
 ### RStudio
 1. Download RStudio Desktop IDE from link: https://posit.co/download/rstudio-desktop/
 2. Install it
+
+## Installing packages
+### Windows
+
+1. Run `R.exe` in terminal
+2. `install.packages("<packagename>")
+3. Click `install`
+
+### Linux
