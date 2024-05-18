@@ -1,0 +1,163 @@
+---
+title: "R Workshop: Exploratory Data Analysis"
+author: "Sara Eftekhar Azam"
+date: "2024-05"
+---
+
+## Introduction
+In this part of the workshop, we are going to use R language to analyze, filter, group, and plot data.
+
+## Loading packages
+First, we have to install packages (if not already installed).
+The packages we are going to use are tidyverse, ggplot2, dplyr, and magrittr.
+
+tidyverse: This is a collection of R packages designed for data science. It includes some datasets too.
+
+ggplot2: This package is used for creating elegant and complex data visualizations.
+
+dplyr: This package provides a set of functions for data manipulation tasks such as filtering, grouping, summarizing, and mutating data frames.
+
+magrittr: This package provides the pipe operator %>%, which allows you to chain together multiple operations.
+
+To install a package, use install.packages("name of package") in the console or terminal below. You only have to do this once.
+
+install.packages("tidyverse")
+install.packages("ggplot2")
+install.packages("dplyr")
+install.packages("magrittr")
+
+
+To run a cell, click on the run button.
+
+After installing the packages, we should include or import them to use them later:
+```{r import packages}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(magrittr)
+```
+
+## Loading data and initial exploring dataset
+The packages we are using have many good datasets inside them. We can use them too.
+To see their available datasets, run the following chunk:
+```{r list datasets}
+data(package = "ggplot2")
+```
+
+We can also load data from a csv file and use it.
+We are going to use Bachelor_Degrees_Majors.csv dataset which consists of information about number of college students in the US for different states. 
+
+```{r load data: csv}
+# View the first few rows of the dataset
+
+data <- read.csv("Bachelor_Degrees_Majors.csv")
+
+
+```
+
+
+```{r explore data: head}
+# View the first few rows of the dataset
+head(data)
+
+```
+Some of the columns of this dataset are numbers some of them are categories. So, we convert them to factor and number:
+
+```{r convert data}
+# Convert character variables to factors
+data$State <- as.factor(data$State)
+data$Sex <- as.factor(data$Sex)
+data$Age.Group <- as.factor(data$Age.Group)
+
+# Ensure column names match exactly
+numeric_cols <- c("Bachelor.s.Degree.Holders", "Science.and.Engineering", "Science.and.Engineering.Related.Fields", "Business", "Education", "Arts..Humanities.and.Others")
+data[, numeric_cols] <- lapply(data[, numeric_cols], function(x) as.numeric(gsub(",", "", x)))
+```
+
+Total is redundant so we should remove rows with Sex=Total. 
+
+```{r remove total rols}
+data <- data %>% 
+  filter(Sex != "Total")
+```
+
+
+```{r explore data: head}
+# View the first few rows of the dataset
+head(data)
+
+```
+
+
+```{r explore data: str}
+# Display the structure of the dataset
+str(data)
+
+```
+
+
+```{r explore data: summary}
+# Summary statistics for numerical variables
+summary(data)
+
+```
+## Asignment 1 (max 3 minutes)
+For this assignment, we are going to do the same for diamonds dataset or any other dataset of your choice.
+Load it, and print different summaries and explanation for the dataset.
+
+
+## Group, filter, and plot data
+Grouping in R is like using GROUP BY in SQL.
+Filtering in R is like adding conditions with WHERE in SQL.
+Plotting is rather simple and intuitive. 
+
+Let's visualize the Science.and.Engineering and Business.
+The ggplot library acts in an additive way. You can add more and more to the figure. 
+Task: Science.and.Engineering vs Business. Show age group as color. 
+```{r visualization}
+ggplot(data, aes(x = Science.and.Engineering, y = Business, color = Age.Group)) +
+  geom_point() +  # Add points for each data point
+  scale_color_discrete(name = "Age Group") +  # Custom color legend title
+  labs(x = "Science and Engineering", y = "Business") +  # Labels for x and y axes
+  ggtitle("Scatter Plot of Science and Engineering vs. Business")  # Title for the plot
+```
+
+### Assignment 2: (up to 3 minues)
+Using above code as example, create a plot for a diamond carot vs its price and show its cut as color (or any other plot of your choice).
+
+We are going to learn how to do these by doing some example tasks.
+
+### Task 1:
+Compare the average Sicence and Engineering for different age groups.
+Only consider Female students.
+Plot bar chart to show the results. 
+
+Let's do this with pipe %>% operator:
+
+```{r task 1, with pipe}
+task1 <- data %>% 
+  filter(Sex == "Female") %>%
+  group_by(Age.Group) %>%
+  summarise(mean_sci = mean(Science.and.Engineering))
+
+ggplot(task1, aes(x = Age.Group, y = mean_sci)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(x = "Age Group", y = "Mean Science and Engineering") +
+  ggtitle("Mean Science and Engineering by Age Group")
+
+```
+
+### Task 2:
+Plot Business and Education in a scatter plot for age group 25 to 39 and Se of Male.
+
+```{r task 2}
+task2 = data %>% filter(Age.Group == "25 to 39" & Sex == "Male")
+ggplot(task2, aes(x = Business, y = Education)) +
+  geom_point() +  # Add points
+  labs(x = "Business", y = "Education") +
+  ggtitle("Business vs Education")
+
+```
+
+# Assignment 3: (up to 5 minutes)
+Plot average price of diamonds for each diamond cut for diamonds with carot between 0.5 and 1.5, (or any other plot of your choice). 
