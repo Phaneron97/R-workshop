@@ -59,24 +59,22 @@ data <- read.csv("Bachelor_Degrees_Majors.csv")
 ```{r explore data: head}
 # View the first few rows of the dataset
 head(data)
+str(data)
 
 ```
 Some of the columns of this dataset are numbers some of them are categories. So, we convert them to factor and number:
 
 ```{r convert data}
-# Convert character variables to factors
-data$State <- as.factor(data$State)
-data$Sex <- as.factor(data$Sex)
-data$Age.Group <- as.factor(data$Age.Group)
-
 # Ensure column names match exactly
 numeric_cols <- c("Bachelor.s.Degree.Holders", "Science.and.Engineering", "Science.and.Engineering.Related.Fields", "Business", "Education", "Arts..Humanities.and.Others")
 data[, numeric_cols] <- lapply(data[, numeric_cols], function(x) as.numeric(gsub(",", "", x)))
+# 885,357 => 885357
 ```
 
 Total is redundant so we should remove rows with Sex=Total. 
 
-```{r remove total rols}
+```{r remove total rows}
+# in dataset, we have male, female, and total (which is sum of male and female). SO, rows with Sex == "Total" are redudant. Since we don't want to show them in our plots, we remove them.
 data <- data %>% 
   filter(Sex != "Total")
 ```
@@ -148,7 +146,7 @@ ggplot(task1, aes(x = Age.Group, y = mean_sci)) +
 ```
 
 ### Task 2:
-Plot Business and Education in a scatter plot for age group 25 to 39 and Se of Male.
+Plot Business and Education in a scatter plot for age group 25 to 39 and Sex of Male.
 
 ```{r task 2}
 task2 = data %>% filter(Age.Group == "25 to 39" & Sex == "Male")
