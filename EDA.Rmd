@@ -1,10 +1,10 @@
 ---
 title: "R Workshop: Exploratory Data Analysis"
-author: "Sara Eftekhar Azam"
+authors: "Group 2"
 date: "2024-05"
 ---
 
-## Introduction
+# Introduction
 In this part of the workshop, we are going to use R language to analyze, filter, group, and plot data.
 
 ## Loading packages
@@ -21,11 +21,14 @@ magrittr: This package provides the pipe operator %>%, which allows you to chain
 
 To install a package, use install.packages("name of package") in the console or terminal below. You only have to do this once.
 
+```{r install packages}
+options(repos = c(CRAN = "https://cran.r-project.org"))
+
 install.packages("tidyverse")
 install.packages("ggplot2")
 install.packages("dplyr")
 install.packages("magrittr")
-
+```
 
 To run a cell, click on the run button.
 
@@ -49,10 +52,7 @@ We are going to use Bachelor_Degrees_Majors.csv dataset which consists of inform
 
 ```{r load data: csv}
 # View the first few rows of the dataset
-
 data <- read.csv("Bachelor_Degrees_Majors.csv")
-
-
 ```
 
 
@@ -80,29 +80,26 @@ data <- data %>%
 ```
 
 
-```{r explore data: head}
+```{r exercise - explore data: head}
 # View the first few rows of the dataset
 head(data)
 
 ```
 
 
-```{r explore data: str}
+```{r exercise - explore data: str}
 # Display the structure of the dataset
 str(data)
 
 ```
 
 
-```{r explore data: summary}
+```{r exercise - explore data: summary}
 # Summary statistics for numerical variables
 summary(data)
 
 ```
-## Asignment 1 (max 3 minutes)
-For this assignment, we are going to do the same for diamonds dataset or any other dataset of your choice.
-Load it, and print different summaries and explanation for the dataset.
-
+# Assignment 1: EDA
 
 ## Group, filter, and plot data
 Grouping in R is like using GROUP BY in SQL.
@@ -120,12 +117,12 @@ ggplot(data, aes(x = Science.and.Engineering, y = Business, color = Age.Group)) 
   ggtitle("Scatter Plot of Science and Engineering vs. Business")  # Title for the plot
 ```
 
-### Assignment 2: (up to 3 minues)
+# Assignment 2: (up to 3 minues)
 Using above code as example, create a plot for a diamond carot vs its price and show its cut as color (or any other plot of your choice).
 
 We are going to learn how to do these by doing some example tasks.
 
-### Task 1:
+## Task 1:
 Compare the average Sicence and Engineering for different age groups.
 Only consider Female students.
 Plot bar chart to show the results. 
@@ -145,7 +142,7 @@ ggplot(task1, aes(x = Age.Group, y = mean_sci)) +
 
 ```
 
-### Task 2:
+## Task 2:
 Plot Business and Education in a scatter plot for age group 25 to 39 and Sex of Male.
 
 ```{r task 2}
@@ -157,5 +154,12 @@ ggplot(task2, aes(x = Business, y = Education)) +
 
 ```
 
-# Assignment 3: (up to 5 minutes)
-Plot average price of diamonds for each diamond cut for diamonds with carot between 0.5 and 1.5, (or any other plot of your choice). 
+# Demo 2: Regression
+
+# Assignment 2: Regression
+
+# Demo 3: Classification
+
+# Assignment 3: Classification
+ 
+

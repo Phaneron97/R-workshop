@@ -10,7 +10,6 @@ This R Markdown document demonstrates how to import a dataset, perform a linear 
 
 ```{r, message=FALSE}
 # Load necessary libraries
-library(datasets)  # For the mtcars dataset
 library(ggplot2)   # For data visualization
 ```
 

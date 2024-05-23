@@ -28,6 +28,10 @@ Use Google Colab
 1. Add R extension for VS Code
 2. Add R Debugger for VS Code
 3. Reboot vsCode
+4. Run R in the terminal, then run the following commands to install the R kernel:
+   * `install.packages('IRkernel') # run in any R environment`
+   * `IRkernel::installspec() # Required in jupyter notebook`
+    
 
 ### RStudio
 1. Download RStudio Desktop IDE from link: https://posit.co/download/rstudio-desktop/
