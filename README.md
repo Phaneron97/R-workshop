@@ -1,9 +1,10 @@
 # README
-Welcome to the repo for the Workshop R for Inholland Informatics 2024
+Welcome to the repo for the workshop about R for Inholland Information Technologies, 2024.
 
 To use R locally, you'll need only program called "R-base" and an editor or IDE.
 
-## Installation on OS
+## Installation per OS
+
 ### Linux
 *tested on Linux Mint*
 1. `sudo apt update -y`
@@ -12,11 +13,11 @@ To use R locally, you'll need only program called "R-base" and an editor or IDE.
 4. Reboot if necessary
 
 ### Windows
-1. Download R-4.x.x from this link: https://cran.rstudio.com/bin/windows/base
+1. Download R-4.4.0 from this link: https://cran.rstudio.com/bin/windows/base
 2. Run the .EXE (if you don't know what you're doing, leave all options as default)
 3. Reboot if necessary
 
-### Web based
+### Web based (not recommended)
 Use Google Colab
 1. Open and login to Google Colab at https://colab.research.google.com/ 
 2. Create a new notebook.
@@ -24,23 +25,23 @@ Use Google Colab
 
 ## IDE configuration
 
-### vsCode (recommended)
+### VS Code (recommended)
 1. Add R extension for VS Code
 2. Add R Debugger for VS Code
 3. Reboot vsCode
-4. Run R in the terminal, then run the following commands to install the R kernel:
+4. Enter "R" in the command prompt (not powershell) to make changes to R, then run the following commands to install the R kernel:
    * `install.packages('IRkernel') # run in any R environment`
    * `IRkernel::installspec() # Required in jupyter notebook`
     
 
 ### RStudio
-1. Download RStudio Desktop IDE from link: https://posit.co/download/rstudio-desktop/
-2. Install it
+1. Download RStudio via Anaconda Navigator
+2. Test if everything works by creating a new R file with "Hello world!" code
 
 ## Installing packages
-### Windows
 
-1. Run `R.exe` in terminal
+### Windows
+1. Run `R` in the command prompt
 2. `install.packages("<packagename>")
 3. Click `install`
 
