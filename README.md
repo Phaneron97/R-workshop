@@ -38,7 +38,7 @@ Use Google Colab
 2. Test if everything works by creating a new R file with "Hello world!" code
 
 ## Installing packages on Windows & Linux
-1. To run R in the terminal/commandprompt/powershell, type `R` or `R.exe` and press enter
+1. To run R in the terminal/CMD/powershell, type `R` or `R.exe` and press enter
 2. Install the required packages to run the workshop with 1 command:
 `install.packages("tidyverse")
 install.packages("ggplot2")
