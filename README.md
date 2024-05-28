@@ -3,7 +3,7 @@ Welcome to the repo for the workshop about R for Inholland Information Technolog
 
 To use R locally, you'll need only program called "R-base" and an editor or IDE.
 
-## Installation per OS
+## OS installation instructions
 
 ### Linux
 *tested on Linux Mint*
@@ -33,16 +33,17 @@ Use Google Colab
    * `install.packages('IRkernel') # run in any R environment`
    * `IRkernel::installspec() # Required in jupyter notebook`
     
-
 ### RStudio
 1. Download RStudio via Anaconda Navigator
 2. Test if everything works by creating a new R file with "Hello world!" code
 
-## Installing packages
+## Installing packages on Windows & Linux
+1. To run R in the terminal/commandprompt/powershell, type `R` or `R.exe` and press enter
+2. Install the required packages to run the workshop with 1 command:
+install.packages("tidyverse")
+install.packages("ggplot2")
+install.packages("dplyr")
+install.packages("magrittr")
+3. Click `install` for each of them
+4. You are done!
 
-### Windows
-1. Run `R` in the command prompt
-2. `install.packages("<packagename>")
-3. Click `install`
-
-### Linux
