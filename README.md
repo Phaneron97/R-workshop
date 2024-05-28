@@ -10,12 +10,12 @@ To use R locally, you'll need only program called "R-base" and an editor or IDE.
 1. `sudo apt update -y`
 2. `sudo apt install r-base -y`
 3. `R --version` Check your R install
-4. Reboot if necessary
+4. Reboot may be necessary
 
 ### Windows
 1. Download R-4.4.0 from this link: https://cran.rstudio.com/bin/windows/base
 2. Run the .EXE (if you don't know what you're doing, leave all options as default)
-3. Reboot if necessary
+3. Reboot may be necessary
 
 ### Web based (not recommended)
 Use Google Colab
