@@ -43,7 +43,11 @@ Use Google Colab
 `install.packages("tidyverse")
 install.packages("ggplot2")
 install.packages("dplyr")
-install.packages("magrittr")`
-3. Click `install` for each of them
-4. You are done!
+install.packages("magrittr")
+install.packages("randomForest")
+install.packages("rpart")
+install.packages("dbscan")
+`
+4. Click `install` for each of them
+5. You are done!
 
