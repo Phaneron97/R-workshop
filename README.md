@@ -29,7 +29,7 @@ Use Google Colab
 1. Add R extension for VS Code
 2. Add R Debugger for VS Code
 3. Reboot vsCode
-4. Enter "R" in the command prompt (not powershell) to make changes to R, then run the following commands to install the R kernel to be able to run R in a notebook (It is very important to do this step as the workshop will use notebook files):
+4. Enter "R" in the command prompt (not powershell) to make changes to R, then run the following commands to install the R kernel to be able to run R in a notebook (It is very important to do this step as the workshop will make use of notebook files):
    * `install.packages('IRkernel') # run in any R environment`
    * `IRkernel::installspec() # Required in jupyter notebook`
     
