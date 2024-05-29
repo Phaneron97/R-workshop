@@ -16,6 +16,12 @@ To use R locally, you'll need only program called "R-base" and an editor or IDE.
 1. Download R-4.4.0 from this link: https://cran.rstudio.com/bin/windows/base
 2. Run the .EXE (if you don't know what you're doing, leave all options as default)
 3. Reboot if necessary
+### Windows (if it doesn't work)
+4. Search for "Edit the System environment variables" inside the Control Panel > System Properties
+5. On the tab "Advanced" > Click on the button "Environment Variables..."
+6. Inside "Use variables for (User)", click on the variable "Path" and press "Edit".
+7. Add the bin of your installed R inside the list of Environment Variables. (Example: "C:\Program Files\R\R-4.4.0\bin")
+8. Press OK and try again to see if it works now.  
 
 ### Web based (not recommended)
 Use Google Colab
